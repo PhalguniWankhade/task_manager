@@ -1,0 +1,138 @@
+/* This CSS file will need to be added to the styling of 
+your web pages for the styles to be rendered. */
+
+body {
+background-image: url("../images/background.jpg") !important;
+background-size: cover;
+color: white;
+}
+
+a {
+    color: white;
+}
+
+/* Index page CSS */
+.jumbotron {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  color: rgb(255, 255, 255) !important;
+  background-image: url("../images/background.jpg") !important;
+  background-size: cover;
+}
+
+.explore-cafe-button{
+  background-color: grey;
+  color: white;
+}
+
+/* All Cafes Page */
+/* Header */
+.header-container{
+  margin: 20px;
+}
+
+/* Card CSS */
+.cafe-card-container{
+  margin: auto;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  font-family: arial;
+  padding: 5px 15px;
+  margin: 5px 35px;
+  background-color: #FFCE45;
+  color: black;
+  border-radius: 1.5rem;
+}
+
+.cafe-image{
+  width: 100%;
+  height: 250px !important;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+}
+
+.details-row-container{
+  display: flex; 
+  justify-content: space-between;
+  align-self: flex-start;
+  padding: 0 30px;
+}
+
+.incorrent-info-container{
+  display: flex; 
+  justify-content: space-evenly;
+  color: white;
+}
+.incorrent-info-container a{
+  background-color: grey;
+  border-color: grey;
+}
+/* Create Board Pop-up */
+.create-board-model-content {
+  color: black;
+}
+.create-board-model-content .modal-header{
+  background-color: #A09F57;
+}
+.create-board-model-content .modal-body{
+  background-color: #EADEB8;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+/* Backlog, In Progress, Done rows */
+.row-card-container{
+  margin: auto;
+}
+
+.row-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 350px;
+  height: 80vh;
+  text-align: left;
+  font-family: arial;
+  padding: 5px 15px;
+  margin: 5px 10px;
+  color: black;
+  border-radius: 0.5rem;
+}
+.row-card-backlog{
+  background-color: #EEEEEE;
+}
+.row-card-in-progress{
+  background-color: #FFE162;
+}
+.row-card-done{
+  background-color: #91C483;
+}
+.task-item-card {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  border-bottom: 8px;
+  width: 100%;
+  margin: 8px auto;
+  padding: 0.2rem 0.6rem;
+  border: 0.5rem;
+  background-color: white;
+}
+li.menu-item:not(:last-child) { 
+  margin-bottom: 10px;  
+}
+
+.delete_task_button{
+  margin: 0 5px;
+  float: right;
+}
+.update_task_status_button{
+  margin: 0 5px;
+  float: right;
+  background-color: grey;
+}
+
+.scrollable-element {
+  scrollbar-color: transparent;
+}

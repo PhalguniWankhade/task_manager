@@ -1,0 +1,48 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Task Manager{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/styles.css')}}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="header-container">
+    <h1>
+      Task Manager
+      <a class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#newBoard" style="float: right;" role="button">Add Board</a>
+    </h1>
+  </div>
+  <div class="row cafe-card-container">
+    {% for row in boards %}
+    <div class="card col-lg-4">
+      <h2>{{row.title}}</h2>
+      <div class="incorrent-info-container">
+        <a type="button" class="btn btn-sm  " role="button" href="{{ url_for('get_board', board_id=row.id) }}">Go To Board</a>
+        <a type="button" class="btn btn-sm  " role="button" href="{{ url_for('delete_board', board_id=row.id) }}">Delete Board</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div id="newBoard" class="modal fade">  
+    <div class="modal-dialog modal-dialog-centered modal-sm">  
+    <!-- Modal content-->  
+         <div class="modal-content create-board-model-content">  
+              <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal">×</button>  
+                   <h4 class="modal-title">Create new board</h4>  
+              </div>  
+              <div class="modal-body">
+                <form method="post" action="{{ url_for('create_new_board') }}" name="login_form">
+                  <p><input type="text" required class="span3" name="board_title" id="title" placeholder="Board Title"></p>
+                  <p><button type="submit" class="btn btn-secondary">Create</button>
+                  </p>
+                </form>
+              </div>  
+         </div>  
+    </div>
+  </div>
+</div>
+
+{% endblock %}

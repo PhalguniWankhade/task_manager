@@ -1,0 +1,67 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}Work Cafe Space{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/styles.css')}}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="header-container">
+      <h3><a title="Back to Workspace" href="/">⬆︎</a> {{board.title}}</h3>
+  </div>
+  <div style="display: flex; justify-content: center; ">
+    {% for column in ['Backlog', 'In Progress', 'Done']%}
+    <div class="row-card row-card-{{column.lower().replace(' ', '-')}}" style="overflow-y: overlay;">
+      <h2>{{column}}
+        {% if column == 'Backlog' %}
+        <a data-toggle="modal" style="float:right" title="Add Task" data-target="#newTask" role="button">➕</a>    
+        {% endif %}
+      </h2>
+      <div >
+        <ul style="list-style-type:none; padding-inline-start: 0;">
+          {% for row in board['tasks'] %}
+          {% if row.state == column %}
+          <li>
+            <div class="task-item-card">
+              <h5>
+                <p><span class="badge bg-secondary">Assignee: {{row.assignee if row.assignee else 'Unassigned'}}</span></p>
+                {{row.summary}}
+                {% if column != 'Done' %}
+              <a class="update_task_status_button" title="{{'Move to In Progress' if column == 'Backlog' else 'Move to Done'}}" href="{{url_for('update_task_state', board_id=board.id, task_id=row.id, current_state=row.state)}}" role="button">⮕</a>
+              {% endif %}
+              <a class="delete_task_button" title="Delete Task" href="{{url_for('delete_board_task', board_id=board.id, task_id=row.id )}}"  data-id="row.id" role="button">🗑</a>
+              </h5>
+              
+            </div>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      
+    </div>
+    {% endfor %}
+  </div>
+  <div id="newTask" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <!-- Modal content-->
+      <div class="modal-content create-board-model-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Add New Task</h4>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{{ url_for('add_task', board_id=board.id) }}" name="login_form">
+            <p><input required type="text" class="span3" name="summary" id="summary" placeholder="Task Summary"></p>
+            <p><input type="text" class="span3" name="assignee" id="assignee" placeholder="Assignee"></p>
+            <p><button type="submit" class="btn btn-secondary">Add</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
